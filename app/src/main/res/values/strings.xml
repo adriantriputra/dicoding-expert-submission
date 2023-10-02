@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Github User List</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="tv_name_placeholder">Full name</string>
+    <string name="tv_followers">Followers</string>
+    <string name="tv_following">Following</string>
+    <string name="tv_follow_count">100</string>
+    <string name="tv_location_placeholder">Location</string>
+    <string name="fab_favorite">Favorite\n</string>
+    <string name="menu_favorite_title">Favorite</string>
+    <string name="title_favorites">Favorites</string>
+</resources>
