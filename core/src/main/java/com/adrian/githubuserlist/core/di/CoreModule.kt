@@ -21,7 +21,7 @@ val networkModule = module {
         val authInterceptor = Interceptor { chain ->
             val request = chain.request()
             val requestHeaders = request.newBuilder()
-                .addHeader("Authorization", "token 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")
+                .addHeader("Authorization", "token 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")
                 .build()
             chain.proceed(requestHeaders)
         }
