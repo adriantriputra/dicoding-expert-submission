@@ -3,10 +3,12 @@ package com.adrian.githubuserlist.core.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.githubuserlist.core.R
 import com.adrian.githubuserlist.core.databinding.ItemUserListBinding
 import com.adrian.githubuserlist.core.domain.model.User
+import com.adrian.githubuserlist.core.utils.UserDiffCallback
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
@@ -17,9 +19,14 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>(){
 
     fun setData(newListData: List<User>?) {
         if (newListData == null) return
+
+        val diffCallback = UserDiffCallback(listData, newListData)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.ListViewHolder =
