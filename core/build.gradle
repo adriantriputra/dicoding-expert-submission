@@ -6,6 +6,17 @@ plugins {
 }
 apply from: '../shared_dependencies.gradle'
 
+def getProps(String propName) {
+    def propsFile = rootProject.file('local.properties')
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        return props[propName]
+    } else {
+        return "";
+    }
+}
+
 android {
     namespace 'com.adrian.githubuserlist.core'
     compileSdk 33
@@ -16,6 +27,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "APP_TOKEN", getProps('APP_TOKEN'))
     }
 
     buildTypes {
@@ -37,6 +50,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -60,4 +74,6 @@ dependencies {
     // database cipher
     implementation "net.zetetic:android-database-sqlcipher:4.4.0"
     implementation "androidx.sqlite:sqlite-ktx:2.3.1"
+
+    implementation "androidx.security:security-crypto:1.1.0-alpha06"
 }

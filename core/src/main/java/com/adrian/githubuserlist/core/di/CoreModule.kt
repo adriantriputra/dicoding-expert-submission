@@ -18,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import com.adrian.githubuserlist.core.BuildConfig
 
 val networkModule = module {
     single {
@@ -27,10 +28,11 @@ val networkModule = module {
             .add(hostname, "sha256/e0IRz5Tio3GA1Xs4fUVWmH1xHDiH2dMbVtCBSkOIdqM=")
             .add(hostname, "sha256/r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=")
             .build()
+        val token = BuildConfig.APP_TOKEN
         val authInterceptor = Interceptor { chain ->
             val request = chain.request()
             val requestHeaders = request.newBuilder()
-                .addHeader("Authorization", "token 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")
+                .addHeader("Authorization", "token $token")
                 .build()
             chain.proceed(requestHeaders)
         }
