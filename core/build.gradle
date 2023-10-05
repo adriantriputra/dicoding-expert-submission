@@ -12,6 +12,8 @@ def getProps(String propName) {
         def props = new Properties()
         props.load(new FileInputStream(propsFile))
         return props[propName]
+    } else {
+        return System.getenv(propName) ?: "";
     }
 }
 
