@@ -6,16 +6,16 @@ plugins {
 }
 apply from: '../shared_dependencies.gradle'
 
-def getProps(String propName) {
-    def propsFile = rootProject.file('local.properties')
-    if (propsFile.exists()) {
-        def props = new Properties()
-        props.load(new FileInputStream(propsFile))
-        return props[propName]
-    } else {
-        return "test";
-    }
-}
+//def getProps(String propName) {
+//    def propsFile = rootProject.file('local.properties')
+//    if (propsFile.exists()) {
+//        def props = new Properties()
+//        props.load(new FileInputStream(propsFile))
+//        return props[propName]
+//    } else {
+//        return "";
+//    }
+//}
 
 android {
     namespace 'com.adrian.githubuserlist.core'
@@ -28,7 +28,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "APP_TOKEN", getProps('APP_TOKEN'))
+        buildConfigField("String", "APP_TOKEN", '"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"')
     }
 
     buildTypes {
